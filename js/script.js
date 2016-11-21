@@ -48,7 +48,7 @@ function loadData() {
     });
 
 
-    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search='+citystr+'&format=json&callback=wikiCallback';
+    var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+citystr+'&format=json&callback=wikiCallback';
     $.ajax({
     		url:wikiUrl,
     		dataType:"jsonp",
@@ -57,7 +57,7 @@ function loadData() {
     			var articeList = data[1];
     			for(var i = 0; i < articeList.length; i++) {
     				articlestr = articeList[i];
-    				var url = 'http://en.wikipedia.org/wiki/'+articlestr;
+    				var url = 'https://en.wikipedia.org/wiki/'+articlestr;
     				$wikiElem.append(
     					'<li><a href="'+url+'">'
     					+ articlestr+
