@@ -47,12 +47,15 @@ function loadData() {
     	$nytHeaderElem.text('New York Times articles could not be loaded');
     });
 
+    var wikiRequestTimeout = setTimeout(function(){
+    	$wikiElem.text('failed to get wikipedia resources');
+    }, 8000);
 
     var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+citystr+'&format=json&callback=wikiCallback';
     $.ajax({
     		url:wikiUrl,
     		dataType:"jsonp",
-    		//jsonp:"callback", by default, usinh jsonp as datatype will set the callback function name to callback. so, no need to mention it again.
+    		//jsonp:"callback", by default, using jsonp as datatype will set the callback function name to callback. so, no need to mention it again.
     		success:function(data) {
     			var articeList = data[1];
     			for(var i = 0; i < articeList.length; i++) {
@@ -64,6 +67,9 @@ function loadData() {
     					'</a></li>'
     					);
     			}
+
+    			clearTimeout(wikiRequestTimeout);
+
     		}
     });
 
